@@ -4,7 +4,7 @@ export default function App() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
+    const handleScroll = () => setScrolled(window.scrollY > 200);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -12,33 +12,46 @@ export default function App() {
   return (
     <div>
       {/* Navbar */}
-      <div className={`fixed top-0 left-0 w-full flex justify-center transition-colors duration-500 z-50 ${scrolled ? "bg-black text-white" : "bg-white text-black"}`}>
-        <div className="flex items-center justify-between w-full md:w-[50%] px-10 py-10">
-          <span className="flex items-center gap-1 font-bold font-smooch tracking-tight cursor-pointer">
-            <span className="text-[30px]">@abrantess_</span>
-          </span>
-          <div className="flex items-center gap-10 font-bold">
-            <span className="font-smooch text-[30px] cursor-pointer opacity-80 hover:opacity-100 transition-opacity">About</span>
-            <span className="font-smooch text-[30px] cursor-pointer opacity-80 hover:opacity-100 transition-opacity">Projects</span>
+      <div className="fixed top-0 left-0 w-full flex justify-center pt-4 px-4 z-30">
+        <div
+          className={`flex items-center justify-between w-[60%] px-7 py-4 rounded-2xl transition-all duration-400 ${
+            scrolled
+              ? "bg-stone-950/80 backdrop-blur-md text-stone-100"
+              : "bg-stone-100/0 text-stone-950"
+          }`}
+        >
+          <a href="#intro" onClick={(e) => {e.preventDefault(); document.getElementById("intro")?.scrollIntoView({ behavior: "smooth" });}} className="font-bold font-mono tracking-tight text-[18px] no-underline hover:opacity-75 transition-opacity" style={{ color: "inherit" }}>
+            @abrantess_
+          </a>
+          <div className="flex items-center gap-25 font-bold">
+          <a
+            href="#about"
+            onClick={(e) => { e.preventDefault(); document.getElementById("about")?.scrollIntoView({ behavior: "smooth" }); }}
+            className="font-mono text-[18px] cursor-pointer opacity-75 hover:opacity-100 transition-opacity no-underline"
+            style={{ color: "inherit" }}
+          >
+            About
+          </a>
+          <a
+            href="#projects"
+            onClick={(e) => { e.preventDefault(); document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" }); }}
+            className="font-mono text-[18px] cursor-pointer opacity-75 hover:opacity-100 transition-opacity no-underline"
+            style={{ color: "inherit" }}
+          >
+            Projects
+          </a>
           </div>
-          <button className="font-smooch text-[30px] border border-current rounded-lg px-2 cursor-pointer hover:opacity-70 transition-opacity">
+          <button
+            onClick={(e) => { e.preventDefault(); document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" }); }}
+            className={`font-mono text-[18px] border rounded-lg px-3 cursor-pointer hover:opacity-65 transition-all duration-500 ${
+              scrolled
+                ? "bg-stone-100 text-stone-950 border-stone-100"
+                : "bg-stone-950 text-stone-100 border-stone-950"
+            }`}
+          >
             Contact me
           </button>
         </div>
-      </div>
-
-      {/* Scrollable content */}
-      <div className="min-h-screen bg-white flex flex-col items-center justify-center pt-32">
-        <p className="text-gray-400 text-sm tracking-widest uppercase mb-4">Scroll down to see the navbar change</p>
-        <div className="w-px h-12 bg-gray-300 animate-bounce" />
-      </div>
-
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <p className="text-2xl font-smooch text-gray-500">Keep scrolling...</p>
-      </div>
-
-      <div className="min-h-screen bg-gray-100 flex items-center justify-center">
-        <p className="text-2xl font-smooch text-gray-500">You made it to the bottom.</p>
       </div>
     </div>
   );
