@@ -306,7 +306,7 @@ export default function Intro() {
           <div className="flex-shrink-0 self-center px-50" style={{ paddingLeft: "12.5rem" }}>
             <div className="w-86 h-102 rounded-lg overflow-hidden" style={{ boxShadow: "4px 4px 0px #a8a29eaa" }}>
               <img
-                src="public/SelfTL.png"
+                src="/SelfTL.png"
                 alt="Luís Abrantes"
                 className="w-full h-full object-cover"
                 style={{ filter: "invert(1)" }}
@@ -320,7 +320,7 @@ export default function Intro() {
         <div className="relative z-10 flex-shrink-0 self-center px-50">
           <div className="w-86 h-102 rounded-lg overflow-hidden flex items-center justify-center" style={{ boxShadow: "4px 4px 0px #1c1917aa" }}>
             <img
-              src="public/SelfTL.png"
+              src="/SelfTL.png"
               alt="Luís Abrantes"
               className="w-full h-full object-cover"
               onError={(e) => { e.target.style.display = "none"; }}
