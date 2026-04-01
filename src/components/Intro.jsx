@@ -160,7 +160,7 @@ export default function Intro() {
         style={{ color: light ? "#a8a29e" : "#a8a29e" }}>
         Hi there,
       </p>
-      <h1 className="font-mono leading-none mb-4 md:mb-6 text-[4.5rem] leading-[1.1] md:text-7xl lg:text-[6.5rem]" style={{ color: light ? "#f5f5f4" : "#0c0a09" }}>
+      <h1 className="font-mono leading-none mb-4 md:mb-6 text-[11vw] sm:text-[4.5rem] leading-[1.1] md:text-7xl lg:text-[6.5rem] whitespace-nowrap" style={{ color: light ? "#f5f5f4" : "#0c0a09" }}>
         I'm <br />
         {done ? (
           <span ref={!light ? nameRef : undefined}>

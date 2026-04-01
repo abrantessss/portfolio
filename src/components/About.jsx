@@ -68,7 +68,7 @@ export default function About() {
     <section id="about" ref={sectionRef} className="min-h-screen bg-stone-200 flex items-center px-8 md:px-20 py-24 relative">
       <div className="max-w-7xl mx-auto w-full z-10">
         <div className="mb-16">
-          <h2 className="font-mono text-5xl md:text-6xl font-bold text-stone-950">
+          <h2 className="font-mono text-[10vw] sm:text-5xl md:text-6xl font-bold text-stone-950 whitespace-nowrap">
             <span className="text-stone-500 mr-2">01.</span>
             {done ? (
               <span>{FULL_TEXT}</span>
@@ -189,12 +189,12 @@ export default function About() {
           <div className="flex justify-between items-center px-6 py-4 border-b border-stone-300 bg-stone-200">
             <h3 className="font-mono font-bold text-stone-950 text-xl flex items-center gap-2">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-stone-600"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>
-              Luis_Abrantes_CV.pdf
+              CV.pdf
             </h3>
             <div className="flex items-center gap-4">
               <a
                 href="/CV.pdf"
-                download="Luis_Abrantes_CV.pdf"
+                download="LuisAbrantesCV.pdf"
                 className="font-mono font-bold px-4 py-2 bg-stone-950 text-stone-100 rounded-lg hover:bg-stone-700 hover:shadow-lg transition-all flex items-center gap-2"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>

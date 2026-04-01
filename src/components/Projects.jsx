@@ -98,7 +98,7 @@ function ProjectCard({ project, index, isVisible }) {
         </p>
         
         {/* Technology Tags */}
-        <div className="flex flex-wrap gap-3 mt-auto">
+        <div className="flex flex-wrap justify-center gap-3 mt-auto">
           {project.tech.map((t, i) => (
             <span key={i} className="px-4 py-1.5 border border-stone-300 rounded-full font-mono text-sm font-bold text-stone-600 bg-stone-50 hover:bg-stone-950 hover:text-stone-100 hover:border-stone-950 transition-colors cursor-default">
               {t}
@@ -170,7 +170,7 @@ export default function Projects() {
           Initiated as a core member of the Powertrain team, driving the development of the <span className="font-bold text-stone-950">high-voltage system</span> through <span className="font-bold text-stone-950">battery pack design</span>, race powertrain simulations, motor bench testing, and inverter programming. Progressed to coordinate the Powertrain, Electronics, and Software departments as  <span className="font-bold text-stone-950">Electrical Technical Director</span>, ensuring seamless alignment across the <span className="font-bold text-stone-950">overall electrical architecture</span>. This leadership role involved defining electrical system concepts, managing <span className="font-bold text-stone-950">cross-functional workflows</span>, and overseeing comprehensive risk assessment and <span className="font-bold text-stone-950">technical decision-making</span>.
         </>
       ),
-      tech: ["Project Management", "Notion", "HV/LV Systems"],
+      tech: ["Project Management", "MS Project", "HV/LV Systems"],
       camera: { position: [0, 1, 2.5], fov: 45 },
       Model: TLMModel,
       controls: {
@@ -233,7 +233,7 @@ export default function Projects() {
         
         {/* Typewriter Title */}
         <div className="mb-12">
-          <h2 className="font-mono text-5xl md:text-6xl font-bold text-stone-950">
+          <h2 className="font-mono text-[10vw] sm:text-5xl md:text-6xl font-bold text-stone-950 whitespace-nowrap">
             <span className="text-stone-400 mr-2">02.</span>
             {done ? <span>{FULL_TEXT}</span> : (
               <span className="relative inline-block">

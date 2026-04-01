@@ -82,7 +82,7 @@ export default function Contact() {
         
         {/* Typewriter Title */}
         <div className="mb-16">
-          <h2 className="font-mono text-5xl md:text-6xl font-bold text-stone-950">
+          <h2 className="font-mono text-[10vw] sm:text-5xl md:text-6xl font-bold text-stone-950 whitespace-nowrap">
             <span className="text-stone-500 mr-2">03.</span>
             {done ? <span>{FULL_TEXT}</span> : (
               <span className="relative inline-block">
