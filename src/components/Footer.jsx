@@ -1,3 +1,9 @@
+import { Analytics } from "@vercel/analytics/react";
+
 export default function Footer() {
-  return <div></div>
+  return (
+    <div>
+      <Analytics />
+    </div>
+  );
 }
