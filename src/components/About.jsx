@@ -20,7 +20,7 @@ export default function About() {
           observer.disconnect(); // Only animate once
         }
       },
-      { threshold: 0.5 } // Trigger when 30% of the section is visible
+      { threshold: 0.05 } // Trigger when 30% of the section is visible
     );
     
     if (sectionRef.current) observer.observe(sectionRef.current);

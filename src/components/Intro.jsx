@@ -155,12 +155,12 @@ export default function Intro() {
     ? after : after.slice(Math.max(0, luisEnd - before.length));
 
   const textBlock = (light) => (
-    <div className="flex-1">
-      <p className="font-mono text-xl tracking-widest uppercase mb-6"
+    <div className="flex-1 flex flex-col items-center lg:items-start text-center lg:text-left z-10">
+      <p className="font-mono text-base md:text-lg lg:text-xl tracking-widest uppercase mb-4 md:mb-6"
         style={{ color: light ? "#a8a29e" : "#a8a29e" }}>
         Hi there,
       </p>
-      <h1 className="font-mono leading-none mb-6" style={{ fontSize: "6.5rem", color: light ? "#f5f5f4" : "#0c0a09" }}>
+      <h1 className="font-mono leading-none mb-4 md:mb-6 text-[4.5rem] leading-[1.1] md:text-7xl lg:text-[6.5rem]" style={{ color: light ? "#f5f5f4" : "#0c0a09" }}>
         I'm <br />
         {done ? (
           <span ref={!light ? nameRef : undefined}>
@@ -180,7 +180,7 @@ export default function Intro() {
           </span>
         )}
       </h1>
-      <p className="font-mono text-xl leading-relaxed max-w-xl uppercase"
+      <p className="font-mono text-sm md:text-lg lg:text-xl leading-relaxed max-w-xl uppercase"
         style={{ color: light ? "#a8a29e" : "#78716c" }}>
         MSc Student in{" "}
         <span className="font-bold" style={{ color: light ? "#e7e5e4" : "#292524" }}>
@@ -193,7 +193,7 @@ export default function Intro() {
           Instituto Superior Técnico
         </a>
       </p>
-      <div className="flex gap-12 mt-8 pointer-events-auto">
+      <div className="flex flex-wrap justify-center lg:justify-start gap-4 md:gap-8 lg:gap-12 mt-6 md:mt-8 pointer-events-auto">
         <a
           href="https://linkedin.com/in/luís-abrantes/"
           target="_blank"
@@ -229,6 +229,23 @@ export default function Intro() {
     </div>
   );
 
+  const photoBlock = (light) => (
+    <div className="relative z-10 flex-shrink-0 mt-12 lg:mt-0">
+      <div
+        className="w-64 h-72 md:w-80 md:h-96 lg:w-[344px] lg:h-[408px] rounded-lg overflow-hidden flex items-center justify-center"
+        style={{ boxShadow: light ? "4px 4px 0px #a8a29eaa" : "4px 4px 0px #1c1917aa" }}
+      >
+        <img
+          src="/SelfTL.png"
+          alt="Luís Abrantes"
+          className="w-full h-full object-cover"
+          style={{ filter: light ? "invert(1)" : "none" }}
+          onError={(e) => { e.target.style.display = "none"; }}
+        />
+      </div>
+    </div>
+  );
+
   return (
     <div>
       {/* Navbar light overlay — clipped to ball, only when not scrolled */}
@@ -237,22 +254,22 @@ export default function Intro() {
         className="fixed top-0 left-0 w-full flex justify-center pt-4 px-4 z-[55] pointer-events-none"
         style={{ clipPath: `circle(0px at -200px -200px)`, WebkitClipPath: `circle(0px at -200px -200px)` }}
       >
-      <div className="flex items-center justify-between w-[60%] px-7 py-4 rounded-2xl bg-transparent text-stone-100">
-        <span className="font-bold font-mono tracking-tight text-[18px]">
+      <div className="flex items-center justify-between w-[95%] md:w-[80%] lg:w-[60%] px-5 md:px-7 py-3 md:py-4 rounded-2xl bg-transparent text-stone-100">
+        <span className="font-bold font-mono tracking-tight text-base md:text-[18px]">
           @abrantess_
         </span>
 
-        <div className="flex items-center gap-25 font-bold">
+        <div className="hidden sm:flex items-center gap-4 md:gap-8 lg:gap-16 font-bold">
           <a
             href="#about"
-            className="font-mono text-[18px] opacity-75 no-underline"
+            className="font-mono text-sm md:text-[18px] opacity-75 no-underline"
             style={{ color: "inherit" }}
           >
             About
           </a>
           <a
             href="#projects"
-            className="font-mono text-[18px] opacity-75 no-underline"
+            className="font-mono text-sm md:text-[18px] opacity-75 no-underline"
             style={{ color: "inherit" }}
           >
             Projects
@@ -261,7 +278,7 @@ export default function Intro() {
 
         <button 
           onClick={(e) => { e.preventDefault(); document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" }); }}
-          className="font-mono text-[18px] border rounded-lg px-3 bg-stone-100 text-stone-950 border-stone-100 cursor-pointer pointer-events-auto hover:opacity-75 transition-opacity"
+          className="font-mono text-sm md:text-[18px] border rounded-lg px-2 md:px-3 py-1 md:py-0 bg-stone-100 text-stone-950 border-stone-100 cursor-pointer pointer-events-auto hover:opacity-75 transition-opacity"
         >
           Contact me
         </button>
@@ -271,7 +288,7 @@ export default function Intro() {
       <div
         id="intro"
         ref={sectionRef}
-        className="min-h-screen bg-stone-100 flex items-center px-20 pt-24 pb-12 relative overflow-hidden gap-16"
+        className="min-h-screen bg-stone-100 flex items-center justify-center px-6 lg:px-20 pt-28 pb-12 relative overflow-hidden"
       >
         {/* Ball */}
         <div
@@ -285,46 +302,25 @@ export default function Intro() {
           zIndex: 20, pointerEvents: "none",
         }} />
 
-        {/* Base text */}
-        {textBlock(false)}
+        {/* Base container */}
+        <div className="flex flex-col lg:flex-row items-center justify-between w-full max-w-7xl mx-auto gap-8 lg:gap-16">
+          {textBlock(false)}
+          {photoBlock(false)}
+        </div>
 
         {/* Clipped light overlay */}
         <div
           ref={overlayRef}
+          className="absolute inset-0 z-25 pointer-events-none flex items-center justify-center px-6 lg:px-20 pt-28 pb-12"
           style={{
-          position: "absolute", inset: 0, zIndex: 25,
-          clipPath: `circle(0px at -200px -200px)`, WebkitClipPath: `circle(0px at -200px -200px)`,
-          pointerEvents: "none",
-          display: "flex", alignItems: "center",
-          paddingLeft: "5rem", paddingRight: "5rem",
-          paddingTop: "6rem", paddingBottom: "3rem",
-          gap: "4rem",
-          background: "#1c1917",
-        }}>
-          {textBlock(true)}
-          {/* Photo negative */}
-          <div className="flex-shrink-0 self-center px-50" style={{ paddingLeft: "12.5rem" }}>
-            <div className="w-86 h-102 rounded-lg overflow-hidden" style={{ boxShadow: "4px 4px 0px #a8a29eaa" }}>
-              <img
-                src="/SelfTL.png"
-                alt="Luís Abrantes"
-                className="w-full h-full object-cover"
-                style={{ filter: "invert(1)" }}
-                onError={(e) => { e.target.style.display = "none"; }}
-              />
-            </div>
-          </div>
-        </div>
-
-        {/* Photo normal */}
-        <div className="relative z-10 flex-shrink-0 self-center px-50">
-          <div className="w-86 h-102 rounded-lg overflow-hidden flex items-center justify-center" style={{ boxShadow: "4px 4px 0px #1c1917aa" }}>
-            <img
-              src="/SelfTL.png"
-              alt="Luís Abrantes"
-              className="w-full h-full object-cover"
-              onError={(e) => { e.target.style.display = "none"; }}
-            />
+            clipPath: `circle(0px at -200px -200px)`,
+            WebkitClipPath: `circle(0px at -200px -200px)`,
+            background: "#1c1917",
+          }}
+        >
+          <div className="flex flex-col lg:flex-row items-center justify-between w-full max-w-7xl mx-auto gap-8 lg:gap-16">
+            {textBlock(true)}
+            {photoBlock(true)}
           </div>
         </div>
       </div>

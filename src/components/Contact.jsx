@@ -5,6 +5,7 @@ export default function Contact() {
   const [text, setText] = useState("");
   const [done, setDone] = useState(false);
   const [blink, setBlink] = useState(true);
+  const [formStatus, setFormStatus] = useState("idle"); // idle, submitting, success, error
   const sectionRef = useRef(null);
 
   const FULL_TEXT = "Contact Me";
@@ -18,7 +19,7 @@ export default function Contact() {
           observer.disconnect();
         }
       },
-      { threshold: 0.2 }
+      { threshold: 0.05 }
     );
     
     if (sectionRef.current) observer.observe(sectionRef.current);
@@ -50,6 +51,30 @@ export default function Contact() {
     const t = setInterval(() => setBlink((b) => !b), 530);
     return () => clearInterval(t);
   }, []);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setFormStatus("submitting");
+    
+    const formData = new FormData(e.target);
+    formData.append("access_key", "ef130f82-54f9-42a3-98d6-a6db6eedfa77");
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData
+      });
+
+      if (response.ok) {
+        setFormStatus("success");
+        e.target.reset(); // Clear the form fields
+      } else {
+        setFormStatus("error");
+      }
+    } catch (error) {
+      setFormStatus("error");
+    }
+  };
 
   return (
     <section id="contact" ref={sectionRef} className="min-h-screen bg-stone-200 px-8 md:px-20 py-24 relative overflow-hidden flex flex-col justify-center">
@@ -116,7 +141,7 @@ export default function Contact() {
 
           {/* Contact Form */}
           <div className={`bg-white p-8 md:p-10 rounded-[2rem] shadow-xl border border-stone-200 transition-all duration-1000 delay-300 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-16"}`}>
-            <form action="mailto:luis.g.abrantes@gmail.com" method="POST" encType="text/plain" className="flex flex-col gap-6">
+            <form onSubmit={handleSubmit} className="flex flex-col gap-6">
               
               <div className="flex flex-col gap-2">
                 <label htmlFor="name" className="font-mono text-sm font-bold text-stone-600 uppercase tracking-wider">Name</label>
@@ -133,9 +158,22 @@ export default function Contact() {
                 <textarea id="message" name="Message" required rows="5" className="bg-stone-100 border border-stone-300 rounded-xl px-4 py-3 outline-none focus:border-stone-950 focus:ring-1 focus:ring-stone-950 transition-all resize-none" placeholder="Hello Luís..."></textarea>
               </div>
 
-              <button type="submit" className="mt-2 bg-stone-950 text-stone-100 font-mono font-bold text-lg py-4 rounded-xl hover:bg-stone-800 hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-3">
-                <span>Send Message</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              <button 
+                type="submit" 
+                disabled={formStatus === "submitting" || formStatus === "success"}
+                className={`mt-2 font-mono font-bold text-lg py-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-3 ${
+                  formStatus === "success" 
+                    ? "bg-green-600 text-white" 
+                    : formStatus === "error"
+                    ? "bg-red-600 text-white"
+                    : "bg-stone-950 text-stone-100 hover:bg-stone-800 hover:shadow-lg disabled:opacity-70 disabled:cursor-not-allowed"
+                }`}
+              >
+                <span>
+                  {formStatus === "submitting" ? "Sending..." : formStatus === "success" ? "Message Sent!" : formStatus === "error" ? "Error! Try Again" : "Send Message"}
+                </span>
+                {(formStatus === "idle" || formStatus === "error") && <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>}
+                {formStatus === "success" && <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>}
               </button>
 
             </form>
