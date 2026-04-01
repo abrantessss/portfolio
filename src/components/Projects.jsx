@@ -90,7 +90,7 @@ function ProjectCard({ project, index, isVisible }) {
 
       {/* Explanation Content */}
       <div className="w-full lg:w-[45%] flex flex-col justify-center px-2 lg:px-6 py-4">
-        <h3 className="font-mono text-3xl md:text-4xl font-bold text-stone-950 mb-6 leading-tight">
+        <h3 className="font-mono text-3xl md:text-4xl font-bold text-stone-950 mb-6 leading-tight text-center lg:text-left">
           {project.title}
         </h3>
         <p className="text-stone-700 text-lg leading-relaxed text-justify mb-8">
