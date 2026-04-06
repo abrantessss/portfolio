@@ -236,7 +236,7 @@ export default function Intro() {
         style={{ boxShadow: light ? "4px 4px 0px #a8a29eaa" : "4px 4px 0px #1c1917aa" }}
       >
         <img
-          src="/SelfTL.png"
+          src="/SelfTL.webp"
           alt="Luís Abrantes"
           className="w-full h-full object-cover"
           style={{ filter: light ? "invert(1)" : "none" }}
