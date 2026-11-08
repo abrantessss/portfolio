@@ -22,3 +22,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Uncompressed asset originals (CAD exports, full-res images).
+# These are inputs to tools/optimize-tlm.mjs, not shipped or versioned —
+# the TLM05e CAD export alone is >1 GB.
+assets-src
